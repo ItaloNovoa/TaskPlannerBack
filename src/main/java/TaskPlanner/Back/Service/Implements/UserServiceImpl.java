@@ -24,6 +24,10 @@ public class UserServiceImpl implements UserService {
     public User getUserById(String userId) {
         return database.getUserById(userId);
     }
+     @Override
+    public Object getIdByCorreo(String correo) {        
+        return database.getIdByCorreo(correo);
+    }
 
     @Override
     public User createUser(User user) {
@@ -39,5 +43,7 @@ public class UserServiceImpl implements UserService {
     public void removeUser(String userId) {
         database.removeUser(userId);
     }
+
+   
 
 }

@@ -16,4 +16,6 @@ public interface UserService {
     User updateUser(User user);
     
     void removeUser(String userId);
+
+	Object getIdByCorreo(String correo);
 }

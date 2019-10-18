@@ -7,7 +7,8 @@ import java.util.List;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import TaskPlanner.Back.Pojos.*;
+import TaskPlanner.Back.Pojos.Task;
+import TaskPlanner.Back.Pojos.User;
 
 @Component
 @Scope("singleton")
@@ -58,7 +59,7 @@ public class data implements dataConnect {
     public List<Task> getTasksByUserId(String userId) {
         ArrayList<Task> usertasks=new ArrayList<Task>();
         for(Task t: tasks){
-            if(t.getPropietario().getEmail().equals(userId)){
+            if(String.valueOf(t.getPropietario().getId()).equals(userId)){
                 usertasks.add(t);
             }
         }
@@ -120,6 +121,15 @@ public class data implements dataConnect {
         }
         return null;
     }
+    @Override
+    public Object getIdByCorreo(String correo) {
+        for(User u:users){
+            if (u.getEmail().equals(correo)){
+                return u.getId();
+            }
+        }
+        return null;
+    }
 
     @Override
     public User createUser(User user) {
@@ -164,5 +174,7 @@ public class data implements dataConnect {
         tasks.add(task);
         return task;
     }
+
+   
     
 }

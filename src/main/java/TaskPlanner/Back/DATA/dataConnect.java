@@ -30,5 +30,7 @@ public interface dataConnect{
     void removeUser(String userId);
 
 	Task addTask(Task task);
+
+	Object getIdByCorreo(String correo);
     
 }

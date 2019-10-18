@@ -5,7 +5,6 @@ public class Task {
     private String description;
     private int priority;
     private Date dueDate;
-    private String mail;
     private String id;
     private String state;
     private User propietario;
@@ -13,17 +12,17 @@ public class Task {
     public Task() {
     }
 
-    public Task(String description, int priority, Date dueDate, String mail, String id, String state,
+    public Task(String description, int priority, Date dueDate, String id, String state,
             User propietario) {
         this.description = description;
         this.priority = priority;
         this.dueDate = dueDate;
-        this.mail = mail;
         this.id = id;
         this.state = state;
         this.propietario = propietario;
     }
 
+    
     public String getDescription() {
         return description;
     }
@@ -46,14 +45,6 @@ public class Task {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
     }
 
     public String getId() {

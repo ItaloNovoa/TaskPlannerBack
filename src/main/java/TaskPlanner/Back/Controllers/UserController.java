@@ -1,9 +1,5 @@
 package TaskPlanner.Back.Controllers;
 
-import java.util.Date;
-
-import javax.servlet.ServletException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import TaskPlanner.Back.Pojos.User;
 import TaskPlanner.Back.Service.UserService;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 
 @RestController
 @CrossOrigin
@@ -45,7 +39,18 @@ public class UserController {
 
 		}
 
-	}
+    }
+     @RequestMapping(value = "CUser/{correo}", method = RequestMethod.GET)
+	public ResponseEntity<?> getIdByCorreo(@PathVariable("correo") String correo) {
+		try {
+			return new ResponseEntity<>(UserServices.getIdByCorreo(correo),HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<>("error", HttpStatus.NOT_FOUND);
+
+		}
+
+    }
+    
 	@RequestMapping(value = "/User", method = RequestMethod.POST)
 	public ResponseEntity<?> saveUser(@RequestBody User u) {
 		try {
@@ -78,7 +83,9 @@ public class UserController {
 
 		}
 
-	}
+    }
+    
+
 	/**@RequestMapping( value = "/login", method = RequestMethod.POST )
     public Token login( @RequestBody User login )
         throws ServletException
