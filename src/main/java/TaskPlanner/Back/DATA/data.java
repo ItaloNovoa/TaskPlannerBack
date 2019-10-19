@@ -22,7 +22,7 @@ public class data implements dataConnect {
         u.setId(1);
         u.setEmail("dd@hotmail.com");
         u.setName("dd");
-        u.setPassword("password");
+        u.setPassword("p");
         users.add(u);
         Task t=new Task();
         t.setDescription("work");
