@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 import TaskPlanner.Back.Pojos.Task;
@@ -19,7 +21,7 @@ public class data implements dataConnect {
         users=new ArrayList<User>();
         tasks=new ArrayList<Task>();
         User u=new User();
-        u.setId(1);
+        u.setId("1");
         u.setEmail("dd@hotmail.com");
         u.setName("dd");
         u.setPassword("p");
@@ -109,6 +111,10 @@ public class data implements dataConnect {
 
     @Override
     public List<User> getUsersList() {
+        //Query query = new Query();
+        //query.addCriteria(Criteria.where("name").is("user1"));
+        //User user = mongoOperation.findOne(query, User.class);
+        //System.err.println(user.toString());
         return users;
     }
 

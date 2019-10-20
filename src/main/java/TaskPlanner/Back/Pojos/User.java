@@ -1,15 +1,19 @@
 package TaskPlanner.Back.Pojos;
 
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+
+@Document
 public class User{
-    private Integer id;
+    @Id
+    private String id;
     private String name;
     private String email;
     private String password;
 
-    public User(int id, String name, String email, String password) {
-        this.id = id;
+    public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -22,11 +26,11 @@ public class User{
 	}
     
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

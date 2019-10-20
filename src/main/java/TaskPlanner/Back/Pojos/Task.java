@@ -1,11 +1,17 @@
 package TaskPlanner.Back.Pojos;
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
+@Document
 public class Task {
+    @Id
+    private String id;
     private String description;
     private int priority;
-    private Date dueDate;
-    private String id;
+    private Date dueDate;    
     private String state;
     private User propietario;
 
