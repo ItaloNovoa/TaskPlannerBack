@@ -68,7 +68,7 @@ public class UserController {
 		}
 
     }
-    @RequestMapping(value = "/RUser/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/RUser/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> removeUser(@PathVariable("id") String userId) {
 		try {
 			UserServices.removeUser(userId);
@@ -79,7 +79,7 @@ public class UserController {
 		}
 
     }
-    @RequestMapping(value = "/UUser", method = RequestMethod.POST)
+    @RequestMapping(value = "/UUser", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateUser(@RequestBody User u) {
 		try {
 			UserServices.updateUser(u);

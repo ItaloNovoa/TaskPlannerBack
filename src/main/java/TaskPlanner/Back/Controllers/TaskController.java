@@ -52,7 +52,7 @@ public class TaskController {
 
 	}
 
-	@RequestMapping(value = "/RTask/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/RTask/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> removeTask(@PathVariable("id") String TaskId) {
 		try {
 			TaskService.removeTask(TaskId);
@@ -64,7 +64,7 @@ public class TaskController {
 
 	}
 
-	@RequestMapping(value = "/UTask", method = RequestMethod.POST)
+	@RequestMapping(value = "/UTask", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateTask(@RequestBody Task task) {
 		try {
 			TaskService.updateTask(task);

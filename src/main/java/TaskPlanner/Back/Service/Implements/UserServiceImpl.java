@@ -3,8 +3,14 @@ package TaskPlanner.Back.Service.Implements;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
+import TaskPlanner.Back.Config.appConfiguration;
 import TaskPlanner.Back.DATA.UserRepository;
 import TaskPlanner.Back.Pojos.User;
 import TaskPlanner.Back.Service.UserService;
@@ -15,21 +21,29 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository database;
 
+    private ApplicationContext applicationContext = new AnnotationConfigApplicationContext(appConfiguration.class);
+    private MongoOperations mongoOperation = (MongoOperations) applicationContext.getBean("mongoTemplate");
+
     @Override
     public List<User> getUsersList() {
-        //return database.getUsersList();
-        return null;
+        Query query = new Query();
+        List<User> users= mongoOperation.find(query, User.class);
+        return users;
     }
 
     @Override
     public User getUserById(String userId) {
-        //return database.getUserById(userId);
-        return null;
+        Query query = new Query();
+        query.addCriteria(Criteria.where("id").is(userId));
+        User user = mongoOperation.findOne(query, User.class);
+        return user;
     }
      @Override
     public Object getIdByCorreo(String correo) {        
-        //return database.getIdByCorreo(correo);
-        return null;
+        Query query = new Query();
+        query.addCriteria(Criteria.where("correo").is(correo));
+        User user = mongoOperation.findOne(query, User.class);
+        return user;
     }
 
     @Override
@@ -39,15 +53,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user) {
-        //return database.updateUser(user);
-        return null;
+        Query query = new Query();
+        query.addCriteria(Criteria.where("id").is(user.getId()));
+        User usuario=mongoOperation.findOne(query, User.class);
+        usuario.setEmail(user.getEmail());
+        usuario.setName(user.getName());
+        usuario.setPassword(user.getPassword());
+        mongoOperation.save(usuario);
+        return usuario;
     }
 
     @Override
     public void removeUser(String userId) {
-        //database.removeUser(userId);
-    }
-
-   
+        Query query = new Query();
+        query.addCriteria(Criteria.where("id").is(userId));
+        mongoOperation.remove(query, User.class);
+    }   
 
 }
