@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
      @Override
     public Object getIdByCorreo(String correo) {        
         Query query = new Query();
-        query.addCriteria(Criteria.where("correo").is(correo));
+        query.addCriteria(Criteria.where("email").is(correo));
         User user = mongoOperation.findOne(query, User.class);
         return user;
     }
