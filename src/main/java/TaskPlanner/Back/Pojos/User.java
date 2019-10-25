@@ -23,7 +23,11 @@ public class User{
     }
     public User(String email) {
 		this.email = email;
-	}
+    }
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
     
 
     public String getId() {
@@ -62,6 +66,8 @@ public class User{
     public String toString() {
         return "User [email=" + email + ", id=" + id + ", name=" + name + ", password=" + password + "]";
     }
+
+    
 
 	
 
