@@ -51,7 +51,7 @@ public class UserController {
     @RequestMapping(value = "CUser/{correo}", method = RequestMethod.GET)
     public ResponseEntity<?> getIdByCorreo(@PathVariable("correo") String correo) {
         try {
-            return new ResponseEntity<>(UserServices.getUserByCorreo(correo).getId(), HttpStatus.CREATED);
+            return new ResponseEntity<>(UserServices.getUserByCorreo(correo), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>("error", HttpStatus.NOT_FOUND);
 
