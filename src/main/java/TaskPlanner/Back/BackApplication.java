@@ -17,6 +17,8 @@ public class BackApplication{
 
 		return registrationBean;
 	}
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(BackApplication.class, args);
 	}

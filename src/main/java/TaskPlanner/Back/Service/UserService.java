@@ -17,5 +17,5 @@ public interface UserService {
     
     void removeUser(String userId);
 
-	User getIdByCorreo(String correo);
+	User getUserByCorreo(String correo);
 }
