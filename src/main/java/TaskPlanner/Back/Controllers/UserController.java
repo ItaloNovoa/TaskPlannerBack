@@ -21,7 +21,7 @@ import TaskPlanner.Back.Service.UserService;
 
 @RestController
 @RequestMapping("api")
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://taskplannerback.herokuapp.com")
 public class UserController {
     @Autowired
     UserService UserServices;
