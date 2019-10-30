@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
         return user;
     }
      @Override
-    public Object getIdByCorreo(String correo) {        
+    public User getIdByCorreo(String correo) {        
         Query query = new Query();
         query.addCriteria(Criteria.where("email").is(correo));
         User user = mongoOperation.findOne(query, User.class);
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-        return database.save(new User(user.getName(),user.getEmail(),user.getPassword()));
+        return database.save(new User(user.getEmail(),user.getPassword(),user.getName()));
     }
 
     @Override

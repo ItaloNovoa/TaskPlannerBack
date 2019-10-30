@@ -8,23 +8,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class User{
     @Id
-    private String id;
-    private String name;
+    private String id;    
     private String email;
     private String password;
-
-    public User(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
+    private String name;
 
     public User() {
     }
-    public User(String email) {
-		this.email = email;
-	}
-    
+
+    public User(String email, String password, String name) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+    }
 
     public String getId() {
         return id;
@@ -32,14 +28,6 @@ public class User{
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getEmail() {
@@ -58,12 +46,18 @@ public class User{
         this.password = password;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "User [email=" + email + ", id=" + id + ", name=" + name + ", password=" + password + "]";
-    }
-
-	
+    }   
 
       
 }

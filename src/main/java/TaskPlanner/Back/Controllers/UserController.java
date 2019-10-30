@@ -21,7 +21,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @RestController
 @RequestMapping( "api" )
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 public class UserController {
     @Autowired
 	UserService UserServices;
@@ -105,7 +105,7 @@ public class UserController {
         String password = login.getPassword();
 
         //TODO implement logic to verify user credentials
-		User user = UserServices.getUserById(String.valueOf(UserServices.getIdByCorreo(username)));
+		User user = UserServices.getIdByCorreo(username);
 		
         
         if ( user == null ){
@@ -117,19 +117,17 @@ public class UserController {
         if ( password.equals( pwd ) == false){
             throw new ServletException( "Invalid login. Please check your name and password." );
         }
-
+        
         jwtToken = Jwts.builder().setSubject( username ).claim( "roles", "user" ).setIssuedAt( new Date() ).signWith(
         SignatureAlgorithm.HS256, "secretkey" ).compact();
-        return new Token( jwtToken );
-        
-        
-        
+        System.out.println(jwtToken);
+        return new Token( jwtToken );       
     }
-    public class Token
-    {
+
+
+    public class Token    {
 
         String accessToken;
-
 
         public Token( String accessToken )
         {

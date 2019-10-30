@@ -15,7 +15,7 @@ import TaskPlanner.Back.Service.TaskService;
 
 @RestController
 @RequestMapping( "api" )
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 public class TaskController {
    @Autowired
 	TaskService TaskService;
