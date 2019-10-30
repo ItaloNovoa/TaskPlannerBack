@@ -9,26 +9,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User{
     @Id
     private String id;
-    private String name;
     private String email;
     private String password;
+    private String name;
+    
 
-    public User(String name, String email, String password) {
+    public User(String email, String password,String name) {
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
     public User() {
-    }
-    public User(String email) {
-		this.email = email;
-    }
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-    
+    }    
 
     public String getId() {
         return id;
@@ -66,10 +59,5 @@ public class User{
     public String toString() {
         return "User [email=" + email + ", id=" + id + ", name=" + name + ", password=" + password + "]";
     }
-
-    
-
-	
-
       
 }
