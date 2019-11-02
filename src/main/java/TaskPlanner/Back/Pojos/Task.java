@@ -13,7 +13,8 @@ public class Task {
     private int priority;
     private Date dueDate;    
     private String state;
-    private User propietario;
+    private User propietario;    
+    private String fileUrl;
 
     public Task() {
     }
@@ -74,6 +75,14 @@ public class Task {
 
     public void setPropietario(User propietario) {
         this.propietario = propietario;
+    }
+
+    public String getFileUrl() {
+        return fileUrl;
+    }
+
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
     }
 
                 

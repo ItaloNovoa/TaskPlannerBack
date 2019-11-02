@@ -8,6 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.stereotype.Component;
 
 import TaskPlanner.Back.Config.appConfiguration;
@@ -20,6 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository database;
+
 
     private ApplicationContext applicationContext = new AnnotationConfigApplicationContext(appConfiguration.class);
     private MongoOperations mongoOperation = (MongoOperations) applicationContext.getBean("mongoTemplate");
