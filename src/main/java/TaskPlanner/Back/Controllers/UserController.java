@@ -55,7 +55,7 @@ public class UserController {
         }   
 
     }
-    
+
     @PostMapping("/files")
     public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) throws IOException {
         try {
@@ -65,10 +65,6 @@ public class UserController {
             return ("Not Found");
         }
     }
-
-
-
-
 
     @RequestMapping(value = "/User", method = RequestMethod.GET)
     public ResponseEntity<?> listAllUsers() {
