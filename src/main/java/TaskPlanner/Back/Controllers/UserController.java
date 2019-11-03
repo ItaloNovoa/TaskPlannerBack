@@ -56,10 +56,10 @@ public class UserController {
 
     }
 
-    @PostMapping("/files")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) throws IOException {
+    @PostMapping("/files/{name}")
+    public String handleFileUpload(@PathVariable("name") String name,@RequestParam("file") MultipartFile file,RedirectAttributes redirectAttributes) throws IOException {
         try {
-            gridFsTemplate.store(file.getInputStream(), file.getName(), file.getContentType());
+            gridFsTemplate.store(file.getInputStream(), name, file.getContentType());
             return file.getName();
         } catch (Exception e) {
             return ("Not Found");
