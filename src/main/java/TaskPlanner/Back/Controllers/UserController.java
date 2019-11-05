@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.data.mongodb.gridfs.GridFsResource;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,7 +45,7 @@ public class UserController {
     GridFsTemplate gridFsTemplate;
     
     @RequestMapping("/files/{filename}")
-    public ResponseEntity<InputStreamResource> getFileByName(@PathVariable String filename) throws IOException {
+    public ResponseEntity<?> getFileByName(@PathVariable String filename) throws IOException {
         try {
             GridFSFile file = gridFsTemplate.findOne(new Query().addCriteria(Criteria.where("filename").is(filename)));
             GridFsResource resource = gridFsTemplate.getResource(file.getFilename());
@@ -60,12 +62,25 @@ public class UserController {
     public String handleFileUpload(@PathVariable("name") String name,@RequestParam("file") MultipartFile file,RedirectAttributes redirectAttributes) throws IOException {
         try {
             gridFsTemplate.store(file.getInputStream(), name, file.getContentType());
-            return file.getName();
+            return name;
         } catch (Exception e) {
-            return ("Not Found");
+            return e.getMessage();
         }
     }
 
+    @PutMapping("/files/{name}")
+    public String UpdateFileName(@PathVariable("name") String name,@RequestParam("file") MultipartFile file,RedirectAttributes redirectAttributes) throws IOException {
+        try {
+            gridFsTemplate.delete(new Query().addCriteria(Criteria.where("filename").is(name)));
+            gridFsTemplate.store(file.getInputStream(), name, file.getContentType());
+            return null;
+        } catch (Exception e) {
+            return e.getMessage();
+        } 
+        
+        
+    }
+ 
     @RequestMapping(value = "/User", method = RequestMethod.GET)
     public ResponseEntity<?> listAllUsers() {
         try {
